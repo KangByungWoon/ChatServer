@@ -17,6 +17,7 @@ public class Client : MonoBehaviour
     StreamWriter writer;
     StreamReader reader;
 
+    // IP와 Port를 통해 서버에 연결합니다. InputField에 적힌게 없다면 기본 정보로 연결합니다.
     public void ConnetToServer()
     {
         if (socketReady) return;
@@ -62,6 +63,7 @@ public class Client : MonoBehaviour
         Chat.instance.ShowMessage(data);
     }
 
+    // 채팅에 작성한 데이터를 보내는 함수입니다.
     void Send(string data)
     {
         if (!socketReady) return;
@@ -71,6 +73,7 @@ public class Client : MonoBehaviour
         writer.Flush();
     }
 
+    // 채팅을 보내는 함수입니다. 엔터를 누를시 데이터를 쓰고 출력합니다.
     public void OnSendButton(InputField SendInput)
     {
 #if(UNITY_EDITOR||UNITY_STANDALONE)
@@ -89,6 +92,7 @@ public class Client : MonoBehaviour
         CloseSocket();
     }
 
+    // 서버로 부터 연결을 끊습니다.
     void CloseSocket()
     {
         if (!socketReady) return;

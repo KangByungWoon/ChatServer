@@ -16,6 +16,7 @@ public class Chat : MonoBehaviour
     public Text ChatText;
     public ScrollRect ChatScrollRect;
 
+    // 채팅을 출력해주는 함수입니다.
     public void ShowMessage(string data)
     {
         ChatText.text += ChatText.text == "" ? data : "\n" + data;

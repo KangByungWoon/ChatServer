@@ -17,6 +17,7 @@ public class Server : MonoBehaviour
     TcpListener server;
     bool serverStarted;
 
+    // 클라이언트에서 Port InputField UI필에 적혀있는 포트번호로 서버를 엽니다.
     public void ServerCreate()
     {
         clients = new List<ServerClient>();
@@ -73,11 +74,13 @@ public class Server : MonoBehaviour
         }
     }
 
+    // 서버가 데이터를 받기 시작합니다.
     void StartListening()
     {
         server.BeginAcceptTcpClient(AcceptTcpClient, server);
     }
 
+    // 서버에 클라이언트의 연결을 확인하고 허락합니다.
     void AcceptTcpClient(IAsyncResult ar)
     {
         TcpListener listener = (TcpListener)ar.AsyncState;
@@ -87,6 +90,7 @@ public class Server : MonoBehaviour
         Broadcast("%NAME", new List<ServerClient>() { clients[clients.Count - 1] });
     }
 
+    // 클라이언트가 연결되어있는지 확인합니다.
     bool IsConnected(TcpClient c)
     {
         try
@@ -120,6 +124,7 @@ public class Server : MonoBehaviour
         Broadcast($"{c.clientName} : {data}", clients);
     }
 
+    // Stream 데이터를 받습니다.
     void Broadcast(string data, List<ServerClient> cl)
     {
         foreach(var c in cl)
