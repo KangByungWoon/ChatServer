@@ -80,7 +80,7 @@ public class Server : MonoBehaviour
         server.BeginAcceptTcpClient(AcceptTcpClient, server);
     }
 
-    // 서버에 클라이언트의 연결을 확인하고 허락합니다.
+    // 서버에 클라이언트의 연결을 확인하고 클라이언트 리스트에 추가합니다.
     void AcceptTcpClient(IAsyncResult ar)
     {
         TcpListener listener = (TcpListener)ar.AsyncState;
